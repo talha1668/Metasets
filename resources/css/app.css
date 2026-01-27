@@ -1,0 +1,470 @@
+/* ============================================
+   Google Fonts - Inter Font Family
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ============================================
+   Tailwind CSS Layers
+   ============================================ */
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Global Font Family
+   ============================================ */
+*,
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+/* ============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================ */
+:root {
+    /* Select dropdown tokens */
+    --select-bg: rgba(31, 41, 55, 0.5);
+    --select-border: #4b5563;
+    --select-text: #ffffff;
+    --select-focus-border: #3b82f6;
+    --select-hover-border: #6b7280;
+
+    /* Dropdown option tokens */
+    --option-bg: #1f2937;
+    --option-hover-bg: #374151;
+
+    /* Icon tokens */
+    --dropdown-arrow: '%2394a3b8';
+
+    /* Scrollbar tokens */
+    --scrollbar-track: #1f2937;
+    --scrollbar-thumb: #374151;
+    --scrollbar-thumb-hover: #4b5563;
+}
+
+[data-theme="light"] {
+    --select-bg: rgba(248, 250, 252, 0.8);
+    --select-border: #cbd5e1;
+    --select-text: #1e293b;
+    --select-focus-border: #3b82f6;
+    --select-hover-border: #94a3b8;
+    --option-bg: #ffffff;
+    --option-hover-bg: #f1f5f9;
+    --dropdown-arrow: '%2364748b';
+}
+
+/* ============================================
+   Custom Select Dropdown Styles
+   ============================================ */
+select {
+    /* Remove default appearance */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Base styles */
+    background-color: var(--select-bg);
+    border: 1px solid var(--select-border);
+    border-radius: 0.5rem;
+    color: var(--select-text);
+    font-size: 0.875rem;
+    font-family: inherit;
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    width: 100%;
+    cursor: pointer;
+    line-height: 1.5;
+
+    /* Transitions */
+    transition: all 0.2s ease-in-out;
+
+    /* Custom dropdown arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='var(--dropdown-arrow)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+}
+
+/* Focus state */
+select:focus {
+    outline: none;
+    border-color: var(--select-focus-border);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: var(--select-bg);
+}
+
+/* Hover state */
+select:hover:not(:disabled) {
+    border-color: var(--select-hover-border);
+}
+
+/* Option styles */
+select option {
+    background-color: var(--option-bg);
+    color: var(--select-text);
+    padding: 0.5rem 0.75rem;
+    border: none;
+    line-height: 1.5;
+}
+
+select option:hover {
+    background-color: var(--option-hover-bg);
+}
+
+select option:checked,
+select option:selected {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* Webkit-specific enhancements */
+@supports (-webkit-appearance: none) {
+    select {
+        -webkit-border-radius: 0.5rem;
+        -webkit-background-clip: padding-box;
+    }
+
+    select::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    select::-webkit-scrollbar-track {
+        background: var(--option-bg);
+        border-radius: 4px;
+    }
+
+    select::-webkit-scrollbar-thumb {
+        background: var(--select-border);
+        border-radius: 4px;
+    }
+
+    select::-webkit-scrollbar-thumb:hover {
+        background: var(--select-hover-border);
+    }
+}
+
+/* Disabled state */
+select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: rgba(31, 41, 55, 0.2);
+    color: #6b7280;
+}
+
+[data-theme="light"] select:disabled {
+    background-color: rgba(241, 245, 249, 0.5);
+    color: #94a3b8;
+}
+
+/* Multiple select */
+select[multiple] {
+    background-image: none;
+    padding: 0.5rem;
+    height: auto;
+    min-height: 6rem;
+}
+
+select[multiple] option {
+    padding: 0.375rem 0.5rem;
+    margin: 0.125rem 0;
+    border-radius: 0.25rem;
+}
+
+select[multiple] option:checked {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* Size variants */
+select.select-sm {
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    font-size: 0.75rem;
+    background-size: 0.875rem;
+    background-position: right 0.5rem center;
+}
+
+select.select-lg {
+    padding: 1rem 3rem 1rem 1rem;
+    font-size: 1rem;
+    background-size: 1.25rem;
+    background-position: right 1rem center;
+}
+
+/* State variants */
+select.error {
+    border-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+select.error:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+select.success {
+    border-color: #10b981;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+select.success:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* ============================================
+   Cross-Browser Smooth Scrolling
+   Support: Modern browsers + graceful degradation
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--scrollbar-track);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Scroll snap */
+.scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-y {
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-start {
+    scroll-snap-align: start;
+}
+
+.scroll-snap-center {
+    scroll-snap-align: center;
+}
+
+/* Parallax scrolling */
+.parallax {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Scroll reveal animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* Sticky navigation */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.sticky-nav.scrolled {
+    backdrop-filter: blur(24px);
+    background: rgba(15, 23, 42, 0.95);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Page transitions */
+.page-transition {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page-transition.fade-out {
+    opacity: 0;
+}
+
+/* Scale on scroll */
+.scale-on-scroll {
+    transform: scale(0.95);
+    opacity: 0.8;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scale-on-scroll.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Scroll direction */
+.scroll-up {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.scroll-down {
+    transform: translateY(-100%);
+}
+
+/* Momentum scrolling - iOS */
+.momentum-scroll {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Scroll margin */
+.scroll-margin-top {
+    scroll-margin-top: 80px;
+}
+
+/* Smooth anchor links */
+a[href^="#"] {
+    transition: color 0.2s ease;
+}
+
+/* Focus visible */
+.focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+    select {
+        padding: 0.875rem 2.25rem 0.875rem 0.875rem;
+        font-size: 1rem;
+        min-height: 2.75rem;
+    }
+
+    select.select-sm {
+        padding: 0.75rem 2rem 0.75rem 0.75rem;
+        font-size: 0.875rem;
+        min-height: 2.5rem;
+    }
+}
+
+/* ============================================
+   Accessibility & User Preferences
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    select {
+        border-width: 2px;
+        border-color: currentColor;
+    }
+
+    select:focus {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+
+    .scroll-progress {
+        background: currentColor;
+        height: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: currentColor;
+        border: 1px solid;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    select,
+    .scroll-reveal,
+    .scale-on-scroll,
+    .parallax,
+    .page-transition,
+    .scroll-up,
+    a[href^="#"] {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .scroll-reveal,
+    .scale-on-scroll,
+    .parallax {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    select {
+        background: white;
+        color: black;
+        border: 1px solid black;
+        background-image: none;
+    }
+
+    .scroll-progress,
+    .sticky-nav {
+        display: none !important;
+    }
+
+    .scroll-reveal,
+    .scale-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ============================================
+   Progressive Enhancement
+   ============================================ */
+.js .no-js-only {
+    display: none !important;
+}
+
+.no-js .js-only {
+    display: none !important;
+}
